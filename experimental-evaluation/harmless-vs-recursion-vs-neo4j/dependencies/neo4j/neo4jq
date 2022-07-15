@@ -1,0 +1,12 @@
+ALL gds.alpha.allShortestPaths.stream({
+  nodeQuery: 'MATCH (n:NODE) RETURN id(n) AS id',
+  relationshipQuery: 'MATCH (n:NODE)-[r:REL]-(p:NODE) RETURN id(n) AS source, id(p) AS target
+})
+YIELD sourceNodeId, targetNodeId
+WITH sourceNodeId, targetNodeId
+
+MATCH (source:NODE) WHERE id(source) = sourceNodeId
+MATCH (target:NODE) WHERE id(target) = targetNodeId
+WITH source, target, distance WHERE source <> target
+
+RETURN source.name AS source, target.name AS target

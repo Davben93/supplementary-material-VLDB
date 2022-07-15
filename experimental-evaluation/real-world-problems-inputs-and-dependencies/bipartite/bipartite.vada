@@ -1,0 +1,10 @@
+part(X, Y)  :- userOrCourse(X,Z).
+part(X, Y)  :- userOrCourse(Z,Y).
+Z1 = Z2 :- part(X, Z1), Action(X, W), Action(W, Y), Part(Y, Z2).
+
+bip :- part(X,Z), action(X,Y), part(Y,Z). 
+
+@input("userOrCourse").
+@bind("userOrCourse","csv","disk","mooc50k.csv").
+@output("bip").
+@bind("bip","csv","disk","bipartite.csv").

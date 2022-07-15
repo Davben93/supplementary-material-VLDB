@@ -1,0 +1,8 @@
+path(X,Y) :- edge(X,Y).
+path(X,Z) :- path(X,Y), edge(Y,Z).
+
+@input("edge").
+@bind("edge","csv","${graphdir}","${graph}.csv").
+@mapping("edge",0,"X","string").
+@mapping("edge",1,"Y","string").
+@output("path").

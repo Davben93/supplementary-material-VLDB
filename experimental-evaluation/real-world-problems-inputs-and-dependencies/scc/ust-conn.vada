@@ -1,0 +1,8 @@
+conn(X,Y,Z) :- edge(X,Y).
+conn(Y,X,Z) :- edge(X,Y).
+Z1=Z2 :- conn(X,Y,Z1), conn(Y,W,Z2).
+connQ(X,Y) :- conn(X,_,Z),conn(Y,_,Z).
+@input("edge").
+@bind("edge","csv","disk","CA-HepTh.csv").
+@output("connQ").
+@bind("connQ","csv","disk","connQ.csv").

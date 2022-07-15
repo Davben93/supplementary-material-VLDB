@@ -1,0 +1,8 @@
+conn(X,Y,Z) :- edge(X,Y).
+Z1=Z2 :- conn(X,Y,Z1), conn(Y,W,Z2).
+
+@input("edge").
+@bind("edge","csv","${graphdir}","${graph}.csv").
+@mapping("edge",0,"X","string").
+@mapping("edge",1,"Y","string").
+@output("conn").

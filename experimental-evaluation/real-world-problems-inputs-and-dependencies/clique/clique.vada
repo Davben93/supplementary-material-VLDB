@@ -1,0 +1,14 @@
+clique(C,X,Y,Z) :- edge(X,Y), edge(Y,Z), edge(Z,X).
+community(C, X), Community(X, Y), Community(X, Z) :- clique(C, X, Y, Z)
+
+
+C1=C2 :- clique(C1,X,Y,_), clique(C2,X,Y,_).
+C1=C2 :- clique(C1,_,X,Y), clique(C2,_,X,Y).
+C1=C2 :- clique(C1,X,_,Y), clique(C2,X,_,Y).
+
+communityQ(X,Y) :- community(X,Z), community(Y,Z).
+
+@output("community").
+@bind("community","csv","disk","communityQ.csv").
+@input("edge").
+@bind("edge","csv","disk","414.edges.csv").
